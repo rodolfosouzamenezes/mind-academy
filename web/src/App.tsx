@@ -1,38 +1,14 @@
 import './App.css'
-import { Header } from './components/Header'
+
+import { Hero } from './pages/Hero';
 
 function App() {
 
   return (
-    <>
-      <Header
-        buttonList={[
-          {
-            label: 'Entrar',
-            type: 'secondary',
-            onClick: () => {},
-          },
-          {
-            label: 'Criar Conta',
-            onClick: () => {},
-          },
-        ]}
-        linkList={[
-          {
-            title: 'Início',
-            url: '#'
-          },
-          {
-            title: 'Sobre',
-            url: '#'
-          },
-          {
-            title: 'Cursos',
-            url: '#'
-          },
-        ]}
-      />
-    </>
+    <div className='container'>
+      <Hero />
+
+    </div>
   )
 }
 
