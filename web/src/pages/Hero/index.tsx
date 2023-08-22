@@ -4,11 +4,12 @@ import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
 
 import heroImage from '../../assets/hero-image.svg';
+import { Footer } from '../../components/Footer';
 
 export function Hero() {
   return (
     <>
-    <Header
+      <Header
         buttonList={[
           {
             label: 'Entrar',
@@ -44,8 +45,9 @@ export function Hero() {
           </div>
           <img src={heroImage} alt="Urso Mind" />
         </div>
-
       </div>
+
+      <Footer />
     </>
   )
 }
