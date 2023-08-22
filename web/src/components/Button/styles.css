@@ -1,0 +1,26 @@
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background: #9A002A;
+}
+
+.btn-secondary {
+  background: none;
+  border: 1px solid #FFFFFF;
+}
+
+.btn-secondary:hover {
+  border: 1px solid var(--primary-color);
+}
