@@ -1,33 +1,58 @@
 import './styles.css'
+import { useContext } from 'react';
 
+import { AuthContext } from '../../providers/auth';
 import { Button, ButtonProps } from '../Button';
+
 import mindLogo from '../../assets/logo.svg';
 
-interface HeaderProps {
-  linkList: {
-    title: string;
-    url: string;
-  }[];
-  buttonList: ButtonProps[];
+interface ButtonListProps {
+  hero: ButtonProps[],
+  default: ButtonProps[],
 }
 
-export function Header({ linkList, buttonList }: HeaderProps) {
+export function Header() {
+  const { user } = useContext(AuthContext)
+
+  const buttonList: ButtonListProps = {
+    hero: [
+      {
+        label: "Entar",
+        type: "secondary",
+        onClick: () => {},
+      },
+      {
+        label: "Criar Conta",
+        onClick: () => {},
+      },
+    ],
+    default: [
+      {
+        label: "Sair",
+        type: "secondary",
+        onClick: () => {},
+      },
+    ],
+  }
+
+  const currentButtonList = user.id ? buttonList.default : buttonList.hero;
+
   return (
     <div className='header'>
       <img src={mindLogo} alt="Mind Academy" />
-      <div className='linkList'>
-        {linkList.map(link => {
-          return (
-            <a href={link.url}>{link.title}</a>
-          )
-        })}
-      </div>
+
       <div className='buttonList'>
-        {buttonList.map(btn => {
-          return (
-            <Button label={btn.label} type={btn.type || 'primary'} onClick={btn.onClick} />
-          )
-        })}
+        {
+          currentButtonList.map(btn => {
+            return (
+              <Button label={btn.label} type={btn.type || 'primary'} onClick={btn.onClick} />
+            )
+          })
+        }
+        {
+          user.isAdmin &&
+          <Button label='Adicionar Curso' onClick={() => {}} />
+        }
       </div>
     </div>
   )

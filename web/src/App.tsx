@@ -1,14 +1,16 @@
 import './App.css'
 
-import { Hero } from './pages/Hero';
+import { Outlet } from 'react-router-dom';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 
 function App() {
-
   return (
-    <div className='container'>
-      <Hero />
-
-    </div>
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
   )
 }
 
