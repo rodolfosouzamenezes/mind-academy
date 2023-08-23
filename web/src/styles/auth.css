@@ -1,0 +1,46 @@
+@import url("./Input.css");
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.content > h1 {
+  margin-bottom: 20px;
+}
+.content > p {
+   color: #CBCBCB;
+}
+
+.content > p > a {
+  color: #FFFFFF;
+  
+  transition: all 0.2s ease-in-out;
+}
+
+.content > p > a:hover {
+  color: var(--primary-color)
+}
+
+form > * {
+  margin-bottom: 20px;
+}
+
+form > button {
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  background: var(--primary-color);
+  font-weight: bold;
+  
+  transition: all 0.2s ease-in-out;
+}
+
+form > button:hover {
+  background: #9A002A;
+}

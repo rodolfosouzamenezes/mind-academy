@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "../App";
 
 import { Hero } from "./Hero";
 import { Login } from "./Login";
-import App from "../App";
+import { SignUp } from "./SignUp";
 
 export function AppRoutes() {
   const router = createBrowserRouter([
@@ -17,6 +18,10 @@ export function AppRoutes() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/cadastro",
+          element: <SignUp />,
         },
       ]
     },

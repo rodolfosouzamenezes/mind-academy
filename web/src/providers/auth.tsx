@@ -20,7 +20,9 @@ interface AuthProviderProps {
 export const AuthContext = createContext({} as AuthContextDataProps);
 
 export function AuthContextProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<UserProps>({id: '1', email: "teste@gmail.com", name: "Teste", isAdmin: true} as UserProps)
+  const [user, setUser] = useState<UserProps>({
+    // id: '1', email: "teste@gmail.com", name: "Teste", isAdmin: true
+  } as UserProps)
 
   const signIn = async () => {
     

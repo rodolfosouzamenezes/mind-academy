@@ -5,6 +5,7 @@ import { AuthContext } from '../../providers/auth';
 import { Button, ButtonProps } from '../Button';
 
 import mindLogo from '../../assets/logo.svg';
+import { useNavigate } from 'react-router-dom';
 
 interface ButtonListProps {
   hero: ButtonProps[],
@@ -13,17 +14,18 @@ interface ButtonListProps {
 
 export function Header() {
   const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const buttonList: ButtonListProps = {
     hero: [
       {
         label: "Entar",
         type: "secondary",
-        onClick: () => {},
+        onClick: () => navigate('/login'),
       },
       {
         label: "Criar Conta",
-        onClick: () => {},
+        onClick: () => navigate('/cadastro'),
       },
     ],
     default: [
