@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import '../../styles/auth.css'
 import { FormEvent, useState } from "react";
 
 export function Login() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +13,7 @@ export function Login() {
 
     console.log(email);
     console.log(password);
+    navigate('/dashboard')
   }
 
   return (

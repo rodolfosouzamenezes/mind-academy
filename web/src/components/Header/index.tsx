@@ -32,7 +32,7 @@ export function Header() {
       {
         label: "Sair",
         type: "secondary",
-        onClick: () => {},
+        onClick: () => { },
       },
     ],
   }
@@ -45,15 +45,20 @@ export function Header() {
 
       <div className='buttonList'>
         {
-          currentButtonList.map(btn => {
+          currentButtonList.map((btn, i) => {
             return (
-              <Button label={btn.label} type={btn.type || 'primary'} onClick={btn.onClick} />
+              <Button
+                label={btn.label}
+                type={btn.type || 'primary'}
+                onClick={btn.onClick}
+                key={i}
+              />
             )
           })
         }
         {
           user.isAdmin &&
-          <Button label='Adicionar Curso' onClick={() => {}} />
+          <Button label='Adicionar Curso' onClick={() => { }} />
         }
       </div>
     </div>

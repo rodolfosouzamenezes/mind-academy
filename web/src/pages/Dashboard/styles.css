@@ -1,0 +1,10 @@
+@import url("../../styles/Input.css");
+
+.input__container, .input__container > input {
+  width: 100%;
+}
+
+.input__container > input {
+  padding: 18px;
+}
+

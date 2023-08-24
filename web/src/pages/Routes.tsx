@@ -4,6 +4,7 @@ import App from "../App";
 import { Hero } from "./Hero";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
+import { Dashboard } from "./Dashboard";
 
 export function AppRoutes() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ export function AppRoutes() {
         {
           path: "/cadastro",
           element: <SignUp />,
+        },
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
         },
       ]
     },
