@@ -31,3 +31,5 @@ npm run dev
 
 ## Credencias de ADM
 Para criar uma conta de ADM basta o email finalizar com `@mind.com`, caso contrário será criado uma conta default.
+
+OBS: Ao trocar de de conta no site, de ADM para um usuário normal, ou ao contrário, atualize a página, pois não consegui solicitar um erro na atualização dos cards dos curso.
