@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import './styles.css'
 import { BookmarkSimple, Info, PencilSimple } from 'phosphor-react'
 import { AuthContext } from '../../providers/auth';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../lib/axios';
 
 export interface CourseProps {
   id: string;
@@ -24,18 +25,31 @@ export function Card({ course }: CardProps) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
 
+  const [isVisible, setIsVisible] = useState(course.isVisible)
+
+  const handleChangeVisibility = async ()  => {
+    setIsVisible(!isVisible)
+
+    await api.patch(`/courses/changeVisibility/${course.id}`)
+    
+  }
+
   return (
     <div className="card">
-      <img className={`banner ${!course.isVisible && 'banner-desative'}`} src={course.imageUrl} alt={`Curso de ${course.name}`} />
+      <img className={`banner ${!isVisible && 'banner-desative'}`} src={course.imageUrl} alt={`Curso de ${course.name}`} />
 
 
       <div className="card__description">
         {course.description}
+
         {
-            user.isAdmin ?
-            <Button label='Editar Curso' onClick={() => navigate(`/curso/${course.id}`)} />
+          user.isAdmin ?
+            <div className='but'>
+              <Button label='Editar Curso' onClick={() => navigate(`/curso/${course.id}`)} />
+              <Button label={isVisible ? 'Desativar' : 'Ativar'} onClick={handleChangeVisibility} />
+            </div>
             : ''
-          }
+        }
       </div>
       <div className="card__content">
         <div className="info">
@@ -46,10 +60,10 @@ export function Card({ course }: CardProps) {
         <div className="buttons">
           {
             user.isAdmin ?
-            <button>
-              <PencilSimple size={22} weight="light" />
-            </button>
-            : ''
+              <button>
+                <PencilSimple size={22} weight="light" />
+              </button>
+              : ''
           }
           {/* <button>
             <BookmarkSimple size={22} weight="light" />
