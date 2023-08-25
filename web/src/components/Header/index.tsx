@@ -62,7 +62,7 @@ export function Header() {
         }
         {
           user.isAdmin &&
-          <Button label='Adicionar Curso' onClick={() => { }} />
+          <Button label='Adicionar Curso' onClick={() => navigate(`/curso/none`)} />
         }
       </div>
     </div>

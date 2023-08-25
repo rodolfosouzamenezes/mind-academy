@@ -70,6 +70,21 @@ class CourseController {
     });
   }
 
+  async getCourseById(req: Request, res: Response) {
+    const id = req.params.id;
+
+    const course = await db.get(`
+      SELECT * FROM Course WHERE id = '${id}';
+    `);
+
+    return res.status(200).json({
+      course: {
+        ...course,
+        isVisible: binaryToBoolean(course.isVisible),
+      }
+    });
+  }
+
   async deleteCourse(req: Request, res: Response) {
     const id = req.params.id;
     const user = req.user;
@@ -129,7 +144,6 @@ class CourseController {
 
   async updateCourse(req: Request, res: Response) {
     const { name, teacher, category, description, isVisible } = req.body;
-    const imageUrl = `http://localhost:3333/files/${req.file?.filename}`;
 
     try {
       const id = req.params.id;
@@ -142,8 +156,10 @@ class CourseController {
       const course = await db.get(`SELECT * FROM Course WHERE id = '${id}'`);
 
       if (!course) return res.status(404).json({ message: "Curso não encontrado" });
-
+      
       const currentFilename = path.basename(course.imageUrl);
+      const imageUrl = `http://localhost:3333/files/${req.file?.filename || currentFilename}`;
+
 
       const query = `
       UPDATE Course 
@@ -154,13 +170,13 @@ class CourseController {
         imageUrl = '${imageUrl}', 
         isVisible = ${isVisible}
       WHERE id = '${course.id}';
-      ` 
-      
+      `
+
       await db.run(query, [], (err) => {
         console.log(err);
       });
-    
-      deleteImage(currentFilename)
+
+      req.file?.filename && deleteImage(currentFilename)
 
       return res.json();
     } catch (error) {

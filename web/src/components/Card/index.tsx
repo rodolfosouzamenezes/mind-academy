@@ -3,6 +3,7 @@ import './styles.css'
 import { BookmarkSimple, Info, PencilSimple } from 'phosphor-react'
 import { AuthContext } from '../../providers/auth';
 import { Button } from '../Button';
+import { useNavigate } from 'react-router-dom';
 
 export interface CourseProps {
   id: string;
@@ -21,6 +22,7 @@ interface CardProps {
 
 export function Card({ course }: CardProps) {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   return (
     <div className="card">
@@ -31,7 +33,7 @@ export function Card({ course }: CardProps) {
         {course.description}
         {
             user.isAdmin &&
-            <Button label='Editar Curso' />
+            <Button label='Editar Curso' onClick={() => navigate(`/curso/${course.id}`)} />
           }
       </div>
       <div className="card__content">

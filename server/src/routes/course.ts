@@ -13,5 +13,6 @@ export const courseRoutes = Router();
 courseRoutes.post("/courses", verifyToken, upload.single('image'), CourseController.createCourse);
 courseRoutes.put("/courses/:id", verifyToken, upload.single('image'), CourseController.updateCourse);
 courseRoutes.get("/courses", verifyToken, CourseController.getAllCourses);
+courseRoutes.get("/courses/:id", verifyToken, CourseController.getCourseById);
 courseRoutes.patch("/courses/changeVisibility/:id", verifyToken, CourseController.changeVisibility);
 courseRoutes.delete("/courses/:id", verifyToken, CourseController.deleteCourse);
