@@ -3,12 +3,15 @@ import { api } from "../../lib/axios";
 import { AuthContext } from "../../providers/auth";
 import { Card, CourseProps } from "../Card";
 import './styles.css'
+import { useLocation } from "react-router-dom";
 
 
 export function CourseList() {
   const { user } = useContext(AuthContext);
   const [search, setSearch] = useState('');
   const [courses, setCourses] = useState([] as CourseProps[]);
+  const location = useLocation();
+
 
   const filteredCourses = courses.filter(course =>
     course.name.toLowerCase().includes(search.toLowerCase())
@@ -32,7 +35,7 @@ export function CourseList() {
 
   useEffect(() => {
     fetchCourses()
-  }, [])
+  }, [location.key])
 
   return (
     <>

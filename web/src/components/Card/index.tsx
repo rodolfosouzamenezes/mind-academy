@@ -32,8 +32,9 @@ export function Card({ course }: CardProps) {
       <div className="card__description">
         {course.description}
         {
-            user.isAdmin &&
+            user.isAdmin ?
             <Button label='Editar Curso' onClick={() => navigate(`/curso/${course.id}`)} />
+            : ''
           }
       </div>
       <div className="card__content">
@@ -44,10 +45,11 @@ export function Card({ course }: CardProps) {
 
         <div className="buttons">
           {
-            user.isAdmin &&
+            user.isAdmin ?
             <button>
               <PencilSimple size={22} weight="light" />
             </button>
+            : ''
           }
           {/* <button>
             <BookmarkSimple size={22} weight="light" />

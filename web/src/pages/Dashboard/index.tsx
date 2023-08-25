@@ -1,4 +1,4 @@
-import { ScrollRestoration, useNavigate } from 'react-router-dom';
+import { ScrollRestoration, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react'
 import './styles.css'
 import { AuthContext } from '../../providers/auth';
@@ -6,6 +6,7 @@ import { CourseList } from '../../components/CourseList';
 
 export function Dashboard() {
   const navigate = useNavigate()
+  const location = useLocation();
 
   const { getMe, user } = useContext(AuthContext)
 
