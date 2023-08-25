@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import './styles.css'
 import { BookmarkSimple, Info, PencilSimple } from 'phosphor-react'
 import { AuthContext } from '../../providers/auth';
+import { Button } from '../Button';
 
 export interface CourseProps {
   id: string;
@@ -26,17 +27,20 @@ export function Card({ course }: CardProps) {
       <img className="banner" src={course.imageUrl} alt={`Curso de ${course.name}`} />
 
 
+      <div className="card__description">
+        {course.description}
+        {
+            user.isAdmin &&
+            <Button label='Editar Curso' />
+          }
+      </div>
       <div className="card__content">
         <div className="info">
           <h2>{course.name}</h2>
           <p>com {course.teacher}</p>
-
         </div>
 
         <div className="buttons">
-          <button>
-            <Info size={22} weight="light" />
-          </button>
           {
             user.isAdmin &&
             <button>

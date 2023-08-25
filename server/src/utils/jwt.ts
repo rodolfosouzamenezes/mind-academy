@@ -21,8 +21,6 @@ export function generateToken(user) {
 export function verifyToken(req: Request, res: Response, next: NextFunction) {
   const token = req.headers['authorization'];
 
-  console.log('oi');
-
   if (!token) {
     return res.status(401).json({ message: 'Token indefinido' });
   }
