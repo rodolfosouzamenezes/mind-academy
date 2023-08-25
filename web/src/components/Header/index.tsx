@@ -5,7 +5,7 @@ import { AuthContext } from '../../providers/auth';
 import { Button, ButtonProps } from '../Button';
 
 import mindLogo from '../../assets/logo.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,  } from 'react-router-dom';
 
 interface ButtonListProps {
   hero: ButtonProps[],
@@ -34,7 +34,7 @@ export function Header() {
         type: "secondary",
         onClick: () => {
           logout()
-
+          
           navigate('/')
         },
       },

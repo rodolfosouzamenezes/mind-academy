@@ -25,6 +25,9 @@ export function Card({ course }: CardProps) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
 
+  console.log(user.isAdmin);
+  
+
   const [isVisible, setIsVisible] = useState(course.isVisible)
 
   const handleChangeVisibility = async ()  => {
@@ -40,7 +43,8 @@ export function Card({ course }: CardProps) {
 
 
       <div className="card__description">
-        {course.description}
+        <p className='card__category'>{course.category}</p>
+        <p className='card__text'>{course.description}</p>
 
         {
           user.isAdmin ?

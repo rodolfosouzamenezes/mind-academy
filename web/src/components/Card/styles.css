@@ -73,14 +73,22 @@
   display: none;
 }
 
-.card__description > p {
+.card__category, .card__text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
-  font-size: 14px;
   -webkit-box-orient: vertical;
   margin-bottom: 10px;
+}
+
+.card__category {
+  -webkit-line-clamp: 1;
+  font-size: 15px;
+}
+
+.card__text {
+  -webkit-line-clamp: 6;
+  font-size: 14px;
 }
 
 .card:hover .card__content {
