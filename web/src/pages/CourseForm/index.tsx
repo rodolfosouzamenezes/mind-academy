@@ -2,6 +2,7 @@ import { ScrollRestoration, useNavigate, useParams } from 'react-router-dom';
 import '../../styles/auth.css'
 import { FormEvent, useEffect, useState } from "react";
 import { api } from '../../lib/axios';
+import { Button } from '../../components/Button';
 
 interface FormData {
   name: string;
@@ -71,7 +72,6 @@ export function CourseForm() {
     }
   };
 
-
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -108,6 +108,13 @@ export function CourseForm() {
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
     }
+  }
+
+  const handleDeleteCourse = async () => {
+    await api.delete(`/courses/${id}`);
+
+    navigate('/dashboard');
+
   }
 
   return (
@@ -188,6 +195,8 @@ export function CourseForm() {
         </div>
         <button type="submit">Confirmar</button>
       </form>
+
+      {isEdit ?  <Button label='Deletar curso' type='secondary' onClick={handleDeleteCourse}/> : '' }
       <ScrollRestoration />
     </div>
   )

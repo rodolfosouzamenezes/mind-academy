@@ -26,6 +26,11 @@
   cursour: pointer;
 }
 
+.content button {
+  width: 100%;
+
+  background-color: red;
+}
 
 form {
   width: 400px;
