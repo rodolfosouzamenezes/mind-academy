@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { ScrollRestoration, useNavigate } from 'react-router-dom';
 import '../../styles/auth.css'
 import { FormEvent, useContext, useState } from "react";
 import { AuthContext } from '../../providers/auth';
@@ -90,6 +90,7 @@ export function SignUp() {
       <p>Já possui uma conta? {" "}
         <a href="/login">Entrar</a>
       </p>
+      <ScrollRestoration />
     </div>
   )
 }

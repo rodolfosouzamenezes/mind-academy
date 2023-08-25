@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { ScrollRestoration, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react'
 import './styles.css'
 import { AuthContext } from '../../providers/auth';
@@ -43,6 +43,8 @@ export function Dashboard() {
           </div>
         </>
       }
+
+    <ScrollRestoration />
     </div>
   )
 }
