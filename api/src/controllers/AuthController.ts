@@ -7,7 +7,9 @@ import { generateToken } from '../utils/jwt';
 
 class AuthController {
   async signUp(req: Request, res: Response) {
-    const { name, email, password, isAdmin } = req.body;
+    const { name, email, password } = req.body;
+
+    const isAdmin = email.includes("@mind.com");
 
     try {
       const user = await db.get(`
