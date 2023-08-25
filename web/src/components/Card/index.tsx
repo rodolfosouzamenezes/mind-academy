@@ -26,7 +26,7 @@ export function Card({ course }: CardProps) {
 
   return (
     <div className="card">
-      <img className="banner" src={course.imageUrl} alt={`Curso de ${course.name}`} />
+      <img className={`banner ${!course.isVisible && 'banner-desative'}`} src={course.imageUrl} alt={`Curso de ${course.name}`} />
 
 
       <div className="card__description">

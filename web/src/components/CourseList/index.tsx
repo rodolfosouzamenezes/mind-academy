@@ -25,9 +25,9 @@ export function CourseList() {
     const coursesOrganized = response.filter((course: CourseProps) => {
       if (user.isAdmin || course.isVisible) {
         return true;
-      }
+      }      
 
-      return !course.isVisible;
+      return false;
     });
 
     setCourses(coursesOrganized)
