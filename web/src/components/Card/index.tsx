@@ -1,16 +1,31 @@
 import './styles.css'
 import { BookmarkSimple, Info } from 'phosphor-react'
 
-export function Card() {
+export interface CourseProps {
+  id: string;
+  name: string;
+  teacher: string;
+  category: string;
+  description: string;
+  imageUrl: string;
+  isVisible: boolean;
+  isSaved: boolean;
+}
+
+interface CardProps {
+  course: CourseProps;
+}
+
+export function Card({ course }: CardProps) {
   return (
     <div className="card">
-      <img className="banner" src="https://www.sp.senac.br/documents/20125/45323/14015_01-08-2022_332183904.jpg/7ca0a175-34ca-06fd-b288-73ee8f19e30f?version=1.0&t=1654010967988null&download=true" alt="" />
+      <img className="banner" src={course.imageUrl} alt={`Curso de ${course.name}`} />
 
 
       <div className="card__content">
         <div className="info">
-          <h2>Culinária Básica</h2>
-          <p>com Jessica Hasse</p>
+          <h2>{course.name}</h2>
+          <p>com {course.teacher}</p>
 
         </div>
 
@@ -18,9 +33,9 @@ export function Card() {
           <button>
             <Info size={22} weight="light" />
           </button>
-          <button>
+          {/* <button>
             <BookmarkSimple size={22} weight="light" />
-          </button>
+          </button> */}
         </div>
       </div>
 
