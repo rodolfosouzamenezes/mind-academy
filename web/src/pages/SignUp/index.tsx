@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import '../../styles/auth.css'
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
+import { AuthContext } from '../../providers/auth';
 
 export function SignUp() {
+  const { signup } = useContext(AuthContext)
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -10,15 +12,20 @@ export function SignUp() {
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    console.log(email);
-    console.log(password);
-    console.log(confirmPassword);
-    console.log(name);
+    const isValidEmail = email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+    if (!isValidEmail) return
 
-    navigate('/dashboard')
+    const isValidPassword = password.toUpperCase() === confirmPassword.toUpperCase();
+    if (!isValidPassword) return
+
+
+    const isLogged = await signup({ email, password, name})
+
+    isLogged && navigate('/dashboard')
   }
 
   return (

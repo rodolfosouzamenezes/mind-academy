@@ -1,5 +1,10 @@
 @import url("../../styles/Input.css");
 
+.content {
+  justify-content: flex-start;
+  padding-top: 100px;
+}
+
 .input__container, .input__container > input {
   width: 100%;
 }

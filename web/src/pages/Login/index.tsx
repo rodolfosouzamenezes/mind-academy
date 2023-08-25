@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import '../../styles/auth.css'
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
+import { AuthContext } from '../../providers/auth';
 
 export function Login() {
+  const { login } = useContext(AuthContext)
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -11,9 +13,12 @@ export function Login() {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    console.log(email);
-    console.log(password);
-    navigate('/dashboard')
+    const isValidEmail = email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+    if (!isValidEmail) return
+
+    const isLogged = await login({ email, password })
+
+    isLogged && navigate('/dashboard')
   }
 
   return (

@@ -30,7 +30,7 @@ class AuthController {
 
       const token = generateToken({ id, name, email, isAdmin });
 
-      return res.status(201).json({ token });
+      return res.status(201).json({ token, id, name, email, isAdmin });
     } catch (error) {
       return res.status(500).json({
         message: "Erro ao criar Usuário",
@@ -63,7 +63,13 @@ class AuthController {
           isAdmin: user.isAdmin, 
         });
 
-        return res.status(200).json({ token });
+        return res.status(200).json({ 
+          token, 
+          id: user.id, 
+          name: user.name, 
+          email: user.email, 
+          isAdmin: user.isAdmin, 
+        });
       }
     } catch (error) {
       return res.status(500).json({
@@ -82,7 +88,7 @@ class AuthController {
   }
 
   async me(req: Request, res: Response) {
-    const user = req.user;    
+    const user = req.user;        
 
     if (user) {
       return res.status(200).json({ user });

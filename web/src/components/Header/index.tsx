@@ -13,7 +13,7 @@ interface ButtonListProps {
 }
 
 export function Header() {
-  const { user } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const buttonList: ButtonListProps = {
@@ -32,7 +32,11 @@ export function Header() {
       {
         label: "Sair",
         type: "secondary",
-        onClick: () => { },
+        onClick: () => {
+          logout()
+
+          navigate('/')
+        },
       },
     ],
   }

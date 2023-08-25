@@ -22,7 +22,13 @@
 }
 
 .content > p > a:hover {
-  color: var(--primary-color)
+  color: var(--primary-color);
+  cursour: pointer;
+}
+
+
+form {
+  width: 400px;
 }
 
 form > * {
