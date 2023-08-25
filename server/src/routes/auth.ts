@@ -7,8 +7,8 @@ import { verifyToken } from "../utils/jwt";
 export const authRoutes = Router();
 
 authRoutes.get("/users", AuthController.getAllUsers);
-authRoutes.post("/signUp", AuthController.signUp);
-authRoutes.get("/login", AuthController.login);
+authRoutes.post("/signup", AuthController.signUp);
+authRoutes.post("/login", AuthController.login);
 
 // Revela os dados do User no token
 authRoutes.get("/me", verifyToken, AuthController.me);
