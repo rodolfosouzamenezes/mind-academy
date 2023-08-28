@@ -109,9 +109,13 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%);
 }
 
-.card__description  > div {
+.card__description  > .list_action {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+}
+
+.list_action-user {
+  justify-content: center !important; 
 }

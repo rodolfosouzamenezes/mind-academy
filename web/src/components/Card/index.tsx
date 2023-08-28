@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import './styles.css'
-import { BookmarkSimple, Info, PencilSimple } from 'phosphor-react'
+import { PencilSimple, BookmarkSimple, BookBookmark } from 'phosphor-react'
 import { AuthContext } from '../../providers/auth';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
@@ -25,16 +25,23 @@ export function Card({ course }: CardProps) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
 
-  console.log(user.isAdmin);
-  
-
   const [isVisible, setIsVisible] = useState(course.isVisible)
-
-  const handleChangeVisibility = async ()  => {
+  const [isSaved, setIsSaved] = useState(course.isSaved)
+  
+  const handleChangeVisibility = async () => {
     setIsVisible(!isVisible)
 
     await api.patch(`/courses/changeVisibility/${course.id}`)
-    
+
+  }
+
+  const handleChangeSaved = async () => {
+    setIsSaved(!isSaved)
+
+    const API_URL = `/courses/save/${course.id}`
+
+    !isSaved ? await api.post(API_URL) : await api.delete(API_URL);
+
   }
 
   return (
@@ -48,11 +55,14 @@ export function Card({ course }: CardProps) {
 
         {
           user.isAdmin ?
-            <div className='but'>
+            <div className='list_action'>
               <Button label='Editar Curso' onClick={() => navigate(`/curso/${course.id}`)} />
               <Button label={isVisible ? 'Desativar' : 'Ativar'} onClick={handleChangeVisibility} />
             </div>
-            : ''
+            :
+            <div className='list_action-user list_action'>
+              <Button label={isSaved ? 'Remover dos salvos' : 'Adicionar aos salvos'} onClick={handleChangeSaved} />
+            </div>
         }
       </div>
       <div className="card__content">
@@ -62,13 +72,14 @@ export function Card({ course }: CardProps) {
         </div>
 
         <div className="buttons">
-          {
-            user.isAdmin ?
-              <button>
+          <button>
+            {
+              user.isAdmin ?
                 <PencilSimple size={22} weight="light" />
-              </button>
-              : ''
-          }
+                : 
+                <BookmarkSimple size={22} weight={isSaved ? "fill" : "light"} />
+            }
+          </button>
           {/* <button>
             <BookmarkSimple size={22} weight="light" />
           </button> */}

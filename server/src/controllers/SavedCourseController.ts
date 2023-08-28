@@ -32,14 +32,16 @@ class SavedCourseController {
   }
 
   async removeToSavedList(req: Request, res: Response) {
-    const savedId = req.params.id;
-
+    const courseId = req.params.id;
+    const user = req.user;
+    
+    
     try {
-      const saved = await db.get(`SELECT * FROM SavedCourse WHERE id = '${savedId}'`);
+      const saved = await db.get(`SELECT * FROM SavedCourse WHERE courseId = '${courseId}' AND userId = '${user.id}'`);
 
-      if (!saved) return res.status(404).json({ message: "Salvo não encontrado" });
-
-      await db.push(`DELETE FROM SavedCourse WHERE id = '${savedId}'`);
+      if (!saved) return res.status(404).json({ message: "Salvo não encontrado" });  
+      
+      await db.run(`DELETE FROM SavedCourse WHERE id = '${saved.id}'`);  
 
       return res.status(204).json();
     } catch (error) {
